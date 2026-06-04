@@ -1,0 +1,1 @@
+Cooperstown Odds is an interactive Baseball Hall of Fame forecasting app. Users can search for a Major League Baseball player to see an estimated Hall of Fame induction probability, supporting career stats, ballot history where available, and a short explanation of the player’s case.
