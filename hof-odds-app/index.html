@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cooperstown Odds</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">MLB Hall of Fame Forecast</p>
+        <h1>Cooperstown Odds</h1>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#forecast">Forecast</a>
+        <a href="#hall">Hall Explorer</a>
+        <a href="#method">Method</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="forecast" class="forecast-panel">
+        <div class="search-block">
+          <label for="playerSearch">Player name</label>
+          <div class="search-row">
+            <input id="playerSearch" type="search" placeholder="Try Mike Trout, Clayton Kershaw, or Edwin Diaz" autocomplete="off" aria-autocomplete="list" aria-controls="playerSuggestions" />
+            <button id="searchBtn" type="button">Analyze</button>
+          </div>
+          <div id="playerSuggestions" class="suggestions" role="listbox" hidden></div>
+          <p class="source-note">Live player totals are fetched from MLB Stats API. Historical Hall baselines use SABR/Lahman data through the 2025 season.</p>
+        </div>
+
+        <div id="resultCard" class="result-card empty">
+          <p class="eyebrow">Forecast</p>
+          <h2>Select a player to begin</h2>
+          <p>Odds are scored against Hall inductees by role, with relief pitchers compared to Hall relief pitchers instead of starters.</p>
+        </div>
+      </section>
+
+      <section class="question-panel" aria-label="Ask a Hall of Fame question">
+        <div class="question-input">
+          <label for="questionInput">Ask a question</label>
+          <div class="search-row">
+            <input id="questionInput" type="search" placeholder="Try: active players with the highest likelihood, or retired non-inducted players with the highest probability" />
+            <button id="questionBtn" type="button">Ask</button>
+          </div>
+        </div>
+        <div id="questionResult" class="question-result">
+          <p class="source-note">Ask for ranked lists of active players, retired non-inducted players, relief pitchers, starters, or position groups.</p>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Hall of Fame filters">
+        <div>
+          <label for="positionFilter">Position</label>
+          <select id="positionFilter"></select>
+        </div>
+        <div>
+          <label for="methodFilter">Induction path</label>
+          <select id="methodFilter"></select>
+        </div>
+        <div>
+          <label for="teamFilter">Team</label>
+          <select id="teamFilter"></select>
+        </div>
+        <div>
+          <label for="yearFilter">Year</label>
+          <select id="yearFilter"></select>
+        </div>
+        <div>
+          <label for="tableSearch">Find</label>
+          <input id="tableSearch" type="search" placeholder="Inductee or team" />
+        </div>
+      </section>
+
+      <section id="hall" class="table-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Hall Explorer</p>
+            <h2>Inductees</h2>
+          </div>
+          <p id="rowCount" class="count"></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr id="tableHead"></tr>
+            </thead>
+            <tbody id="hofBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="method" class="method-grid">
+        <article>
+          <p class="eyebrow">Algorithm</p>
+          <h2>How the score works</h2>
+          <p>The model compares each player to Hall inductees at the same primary position, uses bWAR and fWAR as separate value inputs, estimates future career value from recent career pace and age, weights recent inductions more heavily, adjusts modern starting-pitcher expectations, and sharply caps long-retired low-WAR players with no or negligible BBWAA ballot support.</p>
+        </article>
+        <article>
+          <p class="eyebrow">Sources</p>
+          <h2>Data notes</h2>
+          <p>Hall data is generated from SABR's Lahman Baseball Database, including BBWAA and Era/Veterans-style ballot rows for inducted and non-inducted players where available. MLB live search keeps active-player totals current; player cards and tables display bWAR and fWAR as separate fields.</p>
+        </article>
+      </section>
+    </main>
+
+    <script src="hof-data.js?v=active-career-reality"></script>
+    <script src="app.js?v=active-career-reality"></script>
+  </body>
+</html>
